@@ -4,8 +4,11 @@ import { Server } from "socket.io";
 import { YSocketIO } from "y-socket.io/dist/server";
 import "dotenv/config";
 
+
 const app = express();
 app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const httpServer = createServer(app);
 
@@ -19,12 +22,6 @@ const io = new Server(httpServer, {
 const ySocketIO = new YSocketIO(io);
 ySocketIO.initialize();
 
-app.get("/health", (req, res) => {
-  res.status(200).json({
-    message: "ok",
-    success: true,
-  });
-});
 
 const PORT = process.env.PORT || 3000;
 
