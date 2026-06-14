@@ -36,7 +36,7 @@ function App() {
 
     if (username) {
       const provider = new SocketIOProvider(
-        import.meta.env.VITE_BACKEND_URL || "http://localhost:3000",
+        "/",
         "monaco",
         ydoc,
         {
